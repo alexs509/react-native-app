@@ -18,7 +18,7 @@ export default class Profile extends React.Component {
 
         <Button
           title="Reset"
-          onPress={() => this.props.navigation.navigate('Home')}
+          onPress={() => this.props.navigation.popToTop()}
         />
       </View>
     );
