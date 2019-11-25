@@ -1,28 +1,55 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, Animated, Image, Easing } from 'react-native';
 import Profile from './Profile';
 
 
 export default class Home extends React.Component {
     constructor() {
         super();
-        // need to bind `this` to access props in handler
         this.onPressButton = this.onPressButton.bind(this);
+        this.spinValue = new Animated.Value(0)
+    }
+    componentDidMount() {
+        this.spin()
+    }
+
+    spin() {
+        this.spinValue.setValue(0)
+        Animated.timing(
+            this.spinValue,
+            {
+                toValue: 1,
+                duration: 4000,
+                easing: Easing.linear
+            }
+        ).start(() => this.spin())
     }
     render() {
+        const spin = this.spinValue.interpolate({
+            inputRange: [0, 1],
+            outputRange: ['0deg', '360deg']
+        })
         return (
             <React.Fragment>
                 <View style={{ flex: 1 }}>
-                    <View style={{ flex: 1, justifyContent: 'center',alignItems: 'center', backgroundColor: "" }}>
+                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: "slategrey" }}>
+                        <Animated.Image
+                            style={{
+                                width: 227,
+                                height: 200,
+                                transform: [{ rotate: spin }]
+                            }}
+                            source={{ uri: 'https://s3.amazonaws.com/media-p.slid.es/uploads/alexanderfarennikov/images/1198519/reactjs.png' }}
+                        />
+                    </View>
+                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: "" }}>
                         <Text>Home</Text>
                         <Button
                             title="Go to Jane's profile"
                             onPress={this.onPressButton}
                         />
                     </View>
-                    <View style={{ flex: 1, justifyContent: 'center',alignItems: 'center', backgroundColor: "slategrey" }}>
-                        <Text>hello world 2.........</Text>
-                    </View>
+
                 </View>
             </React.Fragment>
         );
