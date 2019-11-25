@@ -11,13 +11,20 @@ export default class Home extends React.Component {
     }
     render() {
         return (
-            <View style={styles.container}>
-                <Text>Home</Text>
-                <Button
-                    title="Go to Jane's profile"
-                    onPress={this.onPressButton}
-                />
-            </View>
+            <React.Fragment>
+                <View style={{ flex: 1 }}>
+                    <View style={{ flex: 1, justifyContent: 'center',alignItems: 'center', backgroundColor: "" }}>
+                        <Text>Home</Text>
+                        <Button
+                            title="Go to Jane's profile"
+                            onPress={this.onPressButton}
+                        />
+                    </View>
+                    <View style={{ flex: 1, justifyContent: 'center',alignItems: 'center', backgroundColor: "slategrey" }}>
+                        <Text>hello world 2.........</Text>
+                    </View>
+                </View>
+            </React.Fragment>
         );
     }
     onPressButton() {
