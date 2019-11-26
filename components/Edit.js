@@ -13,8 +13,12 @@ export default class Edit extends React.Component {
       <View style={styles.container}>
         <Text>Edit</Text>
         <Button
-          title="Go to Jane's profile"
+          title="Edit"
           onPress={this.onPressButton}
+        />
+         <Button
+          onPress={() => this.props.navigation.dismiss()}
+          title="Reset"
         />
       </View>
     );

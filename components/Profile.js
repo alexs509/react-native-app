@@ -12,24 +12,19 @@ export default class Profile extends React.Component {
     return (
       <View style={styles.container}>
         <Button
-          title="Go to Jane's profile"
           onPress={this.onPressButton}
-        />
-
-        <Button
-          title="Reset"
-          onPress={() => this.props.navigation.popToTop()}
+          title="Go to edit"
         />
       </View>
     );
   }
   onPressButton() {
-    this.props.navigation.push('Profile')
+    this.props.navigation.push("Edit")
   }
 }
 
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({  
   container: {
     flex: 1,
     backgroundColor: '#fff',
