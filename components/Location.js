@@ -30,7 +30,6 @@ export default class Location extends React.Component {
 
 
   render() {
-
     let lat = 48.865983;
     let long = 2.275725;
     let coord = {
@@ -46,40 +45,21 @@ export default class Location extends React.Component {
       console.log("state");
       coord.latitude = this.state.location.coords.latitude;
       coord.longitude = this.state.location.coords.longitude;
-      /* return fetch('https://opendata.paris.fr/api/records/1.0/search/?dataset=velib-disponibilite-en-temps-reel&rows=2&facet=overflowactivation&facet=creditcard&facet=kioskstate&facet=station_state&geofilter.distance=+'+this.state.location.coords.latitude+'%2C'+this.state.location.coords.longitude+'%2C5000')
-          .then((response) => response.json())
-          .then((responseJson) => {
-            console.log(responseJson);
-            this.setState({
-              all: responseJson.records,
-            }, function () {
-            });
-          })
-          .catch((error) => {
-            console.error(error);
-          }); */
     }
 
     return (
       <View style={styles.container}>
 
-        <MapView style={styles.map}
+        { this.state.location &&
+        <MapView showsUserLocation={true} style={styles.map}
           initialRegion={{
-            latitude: lat,
-            longitude: long,
+            latitude: coord.latitude,
+            longitude: coord.longitude,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }}>
+            
 
-          {this.state.location && (
-            <View>
-              <Marker
-                coordinate={coord}
-                title="Utilisateur"
-                description="position actuelle"
-              />
-            </View>
-          )}
           {this.state.all && this.state.all.map(marker => (
             <View key={marker.fields.station_name}>
               <Marker
@@ -93,6 +73,7 @@ export default class Location extends React.Component {
             </View>
           ))}
         </MapView>
+        }
 
         {!this.state.all &&
           <View>
