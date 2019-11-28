@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, Animated, Image, Easing } from 'react-native';
 import Profile from './Profile';
+import Details from './Details';
 
 
 export default class Home extends React.Component {
@@ -9,6 +10,7 @@ export default class Home extends React.Component {
         this.onPressButton = this.onPressButton.bind(this);
         this.spinValue = new Animated.Value(0)
     }
+
     componentDidMount() {
         this.spin()
     }
@@ -24,11 +26,20 @@ export default class Home extends React.Component {
             }
         ).start(() => this.spin())
     }
+
+
     render() {
         const spin = this.spinValue.interpolate({
             inputRange: [0, 1],
             outputRange: ['0deg', '360deg']
         })
+        const datas = {
+            name : "Benjamin Godard - Victor Hugo",
+            lnt : 2.275725,
+            lat : 48.865983,
+            nbbike: 8
+        }
+
         return (
             <React.Fragment>
                 <View style={{ flex: 1 }}>
@@ -48,8 +59,8 @@ export default class Home extends React.Component {
                             title="Go to Jane's profile"
                             onPress={this.onPressButton}
                         />
+                        <Details object = {datas}  />
                     </View>
-
                 </View>
             </React.Fragment>
         );
