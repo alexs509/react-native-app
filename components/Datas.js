@@ -26,18 +26,18 @@ export default class Datas extends React.Component {
   }
 
   render() {
-    const {velib} = this.state;
+    const { velib } = this.state;
     let geo = "";
-    if(velib) {
+    if (velib) {
       geo = velib.map((result) => (
-      <Text key={result.fields.station_name} >{result.fields.station_name}</Text>
-    ));
+        <Text key={result.fields.station_name} >{result.fields.station_name}</Text>
+      ));
     }
-    
+
     return (
       <View style={styles.container}>
         <Text>
-        { geo && geo}
+          {geo && geo}
         </Text>
       </View>
     );
@@ -46,13 +46,10 @@ export default class Datas extends React.Component {
 
 function setItem(state) {
   AsyncStorage.setItem('localisation', (state.velib).toString());
-  //console.log("saved");
 }
 
 function getItem() {
   AsyncStorage.getItem('localisation').then((value) => {
-   // console.log("We have datas");
-   // console.log(value);
   });
 }
 
