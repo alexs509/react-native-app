@@ -9,7 +9,6 @@ export default class Details extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <React.Fragment>
       <View style={{ flex: 1 }}>

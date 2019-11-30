@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { AsyncStorage } from 'react-native';
 
-
 export default class Datas extends React.Component {
   constructor(props) {
     super(props);
@@ -33,7 +32,6 @@ export default class Datas extends React.Component {
         <Text key={result.fields.station_name} >{result.fields.station_name}</Text>
       ));
     }
-
     return (
       <View style={styles.container}>
         <Text>

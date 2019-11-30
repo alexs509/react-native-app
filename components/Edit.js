@@ -1,13 +1,16 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
-
 export default class Edit extends React.Component {
-
   constructor() {
     super();
     this.onPressButton = this.onPressButton.bind(this);
   }
+
+  onPressButton() {
+    this.props.navigation.push('Edit')
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -23,11 +26,7 @@ export default class Edit extends React.Component {
       </View>
     );
   }
-  onPressButton() {
-    this.props.navigation.push('Edit')
-  }
 }
-
 
 const styles = StyleSheet.create({
   container: {

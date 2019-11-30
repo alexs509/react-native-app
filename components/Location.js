@@ -28,51 +28,40 @@ export default class Location extends React.Component {
     );
   }
 
-
   render() {
-    let lat = 48.865983;
-    let long = 2.275725;
     let coord = {
       latitude: null,
       longitude: null
     }
-    let coord2 = {
-      latitude: 48.865983,
-      longitude: 2.275725
-
-    }
     if (this.state.location != null) {
-      console.log("state");
       coord.latitude = this.state.location.coords.latitude;
       coord.longitude = this.state.location.coords.longitude;
     }
 
     return (
       <View style={styles.container}>
+        {this.state.location &&
+          <MapView showsUserLocation={true} style={styles.map}
+            initialRegion={{
+              latitude: coord.latitude,
+              longitude: coord.longitude,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421,
+            }}>
 
-        { this.state.location &&
-        <MapView showsUserLocation={true} style={styles.map}
-          initialRegion={{
-            latitude: coord.latitude,
-            longitude: coord.longitude,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }}>
-            
-
-          {this.state.all && this.state.all.map(marker => (
-            <View key={marker.fields.station_name}>
-              <Marker
-                coordinate={{
-                  latitude: marker.fields.geo[0],
-                  longitude: marker.fields.geo[1]
-                }}
-                title={marker.fields.station_name}
-                description={marker.fields.station_name}
-              />
-            </View>
-          ))}
-        </MapView>
+            {this.state.all && this.state.all.map(marker => (
+              <View key={marker.fields.station_name}>
+                <Marker
+                  coordinate={{
+                    latitude: marker.fields.geo[0],
+                    longitude: marker.fields.geo[1]
+                  }}
+                  title={marker.fields.station_name}
+                  description={marker.fields.station_name}
+                />
+              </View>
+            ))}
+          </MapView>
         }
 
         {!this.state.all &&
