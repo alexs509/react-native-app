@@ -51,7 +51,7 @@ const TabNavigator = createBottomTabNavigator(
           />
       )
   }) },
-  Location: { screen: Location, navigationOptions: () => ({
+  Near: { screen: Location, navigationOptions: () => ({
     tabBarIcon: ({tintColor}) => (
         <Icon
             name="map-marker"
