@@ -84,7 +84,9 @@ Details.propTypes = {
   name: PropTypes.string,
   lat: PropTypes.number,
   lnt: PropTypes.number,
-  nbbike: PropTypes.number
+  nbbike: PropTypes.number,
+  nbfree: PropTypes.number,
+  nbebike: PropTypes.number
 };
 
 
