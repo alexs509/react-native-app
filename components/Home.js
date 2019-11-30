@@ -1,11 +1,24 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, Animated, Image, Easing } from 'react-native';
+import { StyleSheet, Text, View, Button, Animated, Image, Easing, TouchableOpacity } from 'react-native';
 
 export default class Home extends React.Component {
     constructor() {
         super();
         this.onPressButton = this.onPressButton.bind(this);
         this.spinValue = new Animated.Value(0)
+        this.animatedWidth = new Animated.Value(50)
+        this.animatedHeight = new Animated.Value(50)
+    }
+
+    animatedBox = () => {
+        Animated.timing(this.animatedWidth, {
+            toValue: 200,
+            duration: 1000
+        }).start()
+        Animated.timing(this.animatedHeight, {
+            toValue: 250,
+            duration: 500
+        }).start()
     }
 
     componentDidMount() {
@@ -24,8 +37,8 @@ export default class Home extends React.Component {
         ).start(() => this.spin())
     }
 
-
     render() {
+        const animatedStyle = { width: this.animatedWidth, height: this.animatedHeight }
         const spin = this.spinValue.interpolate({
             inputRange: [0, 1],
             outputRange: ['0deg', '360deg']
@@ -49,6 +62,10 @@ export default class Home extends React.Component {
                             title="Go to Jane's profile"
                             onPress={this.onPressButton}
                         />
+                        <TouchableOpacity style={styles.container} onPress={this.animatedBox}>
+                            <Animated.View style={[styles.box, animatedStyle]} />
+                            <Text>☝️</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </React.Fragment>
@@ -67,5 +84,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    box: {
+        backgroundColor: 'goldenrod',
+        width: 50,
+        height: 50
+    }
 });
 
